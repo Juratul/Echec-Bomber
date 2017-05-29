@@ -42,39 +42,15 @@
       this.setCell();
       this.listener2();
       this.setCell2();
-      $('.6-7').addClass('drapeaux');
-      $('.5-7').addClass('bombPion');
-
-       var posB = $('.'+this.pos.x[4]+'-'+this.pos.y[4]).addClass('bombPion');  
-        var posB1x = this.pos.x+5; var posB1y = this.pos.y+5; var posB1 = $('.'+posB1x+'-'+posB1y); 
-      var posB2x = this.pos.x+7; var posB2y = this.pos.y+5; var posB2 = $('.'+posB2x+'-'+posB2y);  
-      var posB3x = this.pos.x; var posB3y = this.pos.y+1; var posB3 = $('.'+posB3x+'-'+posB3y); 
-      var posB4x = this.pos.x; var posB4y = this.pos.y-1; var posB4 = $('.'+posB4x+'-'+posB4y);
-       function ExPion(){
-        timerPion=99;timePion.style.backgroundColor='orange';
-        $('table tr td.bombPion').removeClass('bombPion');  
-        $(posB).addClass('explosion');$(posB1).addClass('explosion');$(posB2).addClass('explosion');$(posB3).addClass('explosion');$(posB4).addClass('explosion');          
-        setTimeout(function() {    
-          timerPion=100;timePion.style.backgroundColor='cyan';
-        
-          $('img.P1b1').css('background-color', '#C775FE');
-          countB1--;   
-          self.tab.bombs[0] = false;          
-        }, 600);
-      }
-      $('img.P1b1').css('background-color', 'red');
-      this.tab.bombs[0] = true; 
-      timerPion=0;timePion.style.backgroundColor='red';
-      setTimeout(function() { timerPion=33; }, 1000); 
-      setTimeout(function() { timerPion=66; }, 2000);                          
-      setTimeout(function() { ExPion(); }, 3000); 
-    },
-     
+      $(".4-0").addClass("tunel1");
+       $(".5-7").addClass("tunel2");
     
      
 
-     
-  
+      if ($('active').hasClass('mur')===true){
+        console.log("mur");
+      }
+    },
     genTab: function(){   //  CREATION DU PLATEAU    /!\ ne pas toucher /!\
       var $table = $('<table></table>');
       for(var x = 0; x < this.tab.x; x++){
@@ -197,7 +173,7 @@
      if ($('.'+this.pos.x+'-'+this.pos.y).hasClass('.4-1')===true){
       console.log('mur');
      }
-      if($('.'+this.pos.x +'-'+this.pos.y).hasClass('tunel1')===true && $('.'+this.pos.x+'-'+this.pos.y).hasClass('tunel2')) {
+      if($('.'+this.pos.x +'-'+this.pos.y).hasClass('tunel1')===true ) {
         this.pos.x = this.pos.x = 5;
         this.pos.y = this.pos.y = 6;
         
@@ -296,7 +272,7 @@
       countB1++; 
       console.log(countB1); 
       var posB = $('.'+this.pos.x+'-'+this.pos.y).addClass('bombPion'); 
-      var posB1x = this.pos.x+2; var posB1y = this.pos.y; var posB1 = $('.'+posB1x+'-'+posB1y); 
+      var posB1x = this.pos.x+1; var posB1y = this.pos.y; var posB1 = $('.'+posB1x+'-'+posB1y); 
       var posB2x = this.pos.x-1; var posB2y = this.pos.y; var posB2 = $('.'+posB2x+'-'+posB2y);  
       var posB3x = this.pos.x; var posB3y = this.pos.y+1; var posB3 = $('.'+posB3x+'-'+posB3y); 
       var posB4x = this.pos.x; var posB4y = this.pos.y-1; var posB4 = $('.'+posB4x+'-'+posB4y);
@@ -306,7 +282,7 @@
         $(posB).addClass('explosion');$(posB1).addClass('explosion');$(posB2).addClass('explosion');$(posB3).addClass('explosion');$(posB4).addClass('explosion');          
         setTimeout(function() {    
           timerPion=100;timePion.style.backgroundColor='cyan';
-        
+          $('table tr td.explosion').removeClass('explosion'); 
           $('img.P1b1').css('background-color', '#C775FE');
           countB1--;   
           self.tab.bombs[0] = false;          
@@ -441,7 +417,7 @@
         add_class_to_array('explosion', get_explosion_diagonal(posBx,posBy));
         setTimeout(function() {  
           timerFou=100;timeFou.style.backgroundColor='cyan';              
-         
+          $('table tr td.explosion').removeClass('explosion');
           $('img.P1b4').css('background-color', '#C775FE');
           countB1--;
           self.tab.bombs[3] = false
