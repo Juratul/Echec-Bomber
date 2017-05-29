@@ -1,0 +1,102 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>EchecBomber</title>
+</head>
+ <body>
+    <!--=============================================================================================================-->
+    <!--===================================================== HTML ==================================================-->
+    <!--=============================================================================================================-->
+    <!-- <p class="timeToStart" id="timeToStart"><h1 class="sup">Lancement du game dans : <div class="sup" id="compteur" style="display: inline-block;"></div>s</h1></p> -->
+    <aside class="a1"><br>
+    <img src="img/coeur_plein.png" class="coeur1_1" width="50px" height="50px">
+    <img src="img/coeur_plein.png" class="coeur1_2" width="50px" height="50px">
+    <img src="img/coeur_plein.png" class="coeur1_3" width="50px" height="50px"><br>
+    <img src="img/bomb_pion.png" class="b1 P1b1"><div class="barre"><div class="timePion" id="timePion"></div></div><br>
+    <img src="img/bomb_tour.png" class="b1 P1b2"><div class="barre"><div class="timeTour" id="timeTour"></div></div><br>
+    <img src="img/bomb_cav.png" class="b1 P1b3"><div class="barre"><div class="timeCav" id="timeCav"></div></div><br>
+    <img src="img/bomb_fou.png" class="b1 P1b4"><div class="barre"><div class="timeFou" id="timeFou"></div></div><br>
+    <img src="img/bomb_renne.png" class="b1 P1b5"><div class="barre"><div class="timeRenne" id="timeRenne"></div></div><br>
+    <img src="img/bomb_roi.png" class="b1 P1b6"></aside>
+    <aside class="a2"><br>
+    <img src="img/coeur_plein.png" class="coeur2_1" width="50px" height="50px">
+    <img src="img/coeur_plein.png" class="coeur2_2" width="50px" height="50px">
+    <img src="img/coeur_plein.png" class="coeur2_3" width="50px" height="50px"><br>
+    <div class="barre"><div class="timePion2" id="timePion2"></div></div><img src="img/bomb_pion.png" class="b2 P2b1"><br>
+    <div class="barre"><div class="timeTour2" id="timeTour2"></div></div><img src="img/bomb_tour.png" class="b2 P2b2"><br>
+    <div class="barre"><div class="timeCav2" id="timeCav2"></div></div><img src="img/bomb_cav.png" class="b2 P2b3"><br>
+    <div class="barre"><div class="timeFou2" id="timeFou2"></div></div><img src="img/bomb_fou.png" class="b2 P2b4"><br>
+    <div class="barre"><div class="timeRenne2" id="timeRenne2"></div></div><img src="img/bomb_renne.png" class="b2 P2b5"><br>
+    <div class="barre" style="opacity: 0;"></div><img src="img/bomb_roi.png" class="b2 P2b6"></aside>
+    <div class="tabContainer"></div>
+    <!--=============================================================================================================-->
+    <!--===================================================== CSS ===================================================-->
+    <!--=============================================================================================================-->
+    <style type="text/css">
+
+      html, head, body, div, canvas {margin:0; padding:0; border:0; background-color:black;}
+      #main {width:100px; height:100px; position:absolute; background-color:red;}
+      canvas {position:absolute; background-color:green;}
+
+      .supp{display: none;}
+
+      aside{position: absolute;}
+      h1{color: white; position: absolute; top: 40%; left: 30%;}
+      .a1{padding: 2px 2px; margin-left: 12%; background-color: #C775FE;}
+      .a2{padding: 2px 2px; margin-left: 74%; background-color: #FDAD46;}
+      .b1{background-color: #C775FE; border-radius: 100%; border: 5px solid white;}
+      .b2{background-color: #FDAD46; border-radius: 100%; border: 5px solid white;}
+
+      div.barre{background-color: #ffffff; color: black; border: 1px solid #370404; border-radius: 3px; height: 15px;  width: 60px; display: inline-block; border-radius: 5px;}
+      div.timePion{background-color: cyan; height:100%; width:100%; border-radius: 5px;}
+      div.timeTour{background-color: cyan; height:100%; width:100%; border-radius: 5px;}
+      div.timeCav{background-color: cyan; height:100%; width:100%; border-radius: 5px;}
+      div.timeFou{background-color: cyan; height:100%; width:100%; border-radius: 5px;}
+      div.timeRenne{background-color: cyan; height:100%; width:100%; border-radius: 5px;}
+      div.timeRoi{background-color: cyan; height:100%; width:100%; border-radius: 5px;}
+      div.timePion2{background-color: cyan; height:100%; width:100%; border-radius: 5px;}
+      div.timeTour2{background-color: cyan; height:100%; width:100%; border-radius: 5px;}
+      div.timeCav2{background-color: cyan; height:100%; width:100%; border-radius: 5px;}
+      div.timeFou2{background-color: cyan; height:100%; width:100%; border-radius: 5px;}
+      div.timeRenne2{background-color: cyan; height:100%; width:100%; border-radius: 5px;}
+      div.timeRoi2{background-color: cyan; height:100%; width:100%; border-radius: 5px;}
+
+      table{
+          border-collapse: collapse;
+          background-image: url(img/plateau.png);
+          margin-left: 25%;
+          margin-top: 1%;
+      }
+      table tr td{
+          width: 78px;
+          height: 78px;
+          border: 1px solid #DCDCDC;
+      }
+      .bombPion{background-image: url(img/bomb_pion.png);}
+      .bombTour{background-image: url(img/bomb_tour.png);}      
+      .bombCav{background-image: url(img/bomb_cav.png);}      
+      .bombFou{background-image: url(img/bomb_fou.png);}      
+      .bombRe{background-image: url(img/bomb_renne.png);}     
+      .bombRoi{background-image: url(img/bomb_roi.png);}
+      .bombPion2{background-image: url(img/bomb_pion.png);}
+      .bombTour2{background-image: url(img/bomb_tour.png);}      
+      .bombCav2{background-image: url(img/bomb_cav.png);}      
+      .bombFou2{background-image: url(img/bomb_fou.png);}      
+      .bombRe2{background-image: url(img/bomb_renne.png);}     
+      .bombRoi2{background-image: url(img/bomb_roi.png);}
+
+      .active{background-image: url(img/player.png);}
+      .active2{background-image: url(img/player2.png);}
+      .explosion{background-image: url(img/explosion.gif);}
+      .mur{background-image: url(img/mur.jpg);}
+      .tunel1{background-image: url(img/tunel1.png);}
+      .tunel2{background-image: url(img/tunel2.png);}
+
+    </style>
+
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="js/game.js"></script>
+    <script type="text/javascript" src="js/explosion.js"></script>
+ </body>
+</html>
